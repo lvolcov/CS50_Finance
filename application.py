@@ -1,4 +1,5 @@
 import os
+import sqlalchemy
 
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, json
