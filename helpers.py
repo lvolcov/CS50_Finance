@@ -2,7 +2,6 @@ import os
 import requests
 import urllib.parse
 import random
-from cs50 import SQL
 
 from flask import redirect, render_template, request, session
 from functools import wraps
@@ -76,7 +75,7 @@ def usd(value):
     return f"${value:,.2f}"
 
 def current_prices():
-    db = SQL("sqlite:///finance.db")
+    db = SQL("postgres://jdervouohkuygo:2f1204970f3b25c2d27aef1d48984d8c72c0f5976ace26a8c5892811daf03901@ec2-54-217-236-206.eu-west-1.compute.amazonaws.com:5432/d4updmo4j2fg0k")
     symbols = db.execute("SELECT symbol FROM logs WHERE symbol <> 'CASH' GROUP BY symbol")
 
     for symbol in symbols:
