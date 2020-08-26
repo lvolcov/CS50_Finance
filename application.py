@@ -41,8 +41,8 @@ db = SQL("postgres://jdervouohkuygo:2f1204970f3b25c2d27aef1d48984d8c72c0f5976ace
 @login_required
 def index():
     #current_prices()
-    info_index = db.execute("SELECT symbol as Symbol, name as Name, SUM(shares) as Shares, MAX(current_price) as Price, SUM(shares)*MAX(current_price) as TOTAL FROM logs WHERE user_id = ? GROUP BY symbol, name HAVING sum(shares) <> 0", session["user_id"])
-    cash = {'Symbol': 'CASH', "Name": "", "Shares": "", 'Price': 0, 'TOTAL': round(db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"], 2)}
+    info_index = db.execute("SELECT symbol as Symbol, name as Name, SUM(shares) as Shares, MAX(current_price) as Price, SUM(shares)*MAX(current_price) as TOTAL FROM logs WHERE user_id = ? GROUP BY symbol, name HAVING sum(shares) <> 0", 16)
+    cash = {'Symbol': 'CASH', "Name": "", "Shares": "", 'Price': 0, 'TOTAL': round(db.execute("SELECT cash FROM users WHERE id = ?", 16)[0]["cash"], 2)}
     info_index.append(cash)
     sum_total = 0
     for total in info_index:
